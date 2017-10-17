@@ -17,17 +17,7 @@ router.get('/:id', (req, res, next)=>{
 });
 
 router.post('/', (req, res, next)=>{
-	const firstName = req.body.firstName;
-	const lastName = req.body.lastName;
-	const email = req.body.email;
-	const campusId = req.body.campusId;
-	//TRY AND USE REQ.BODY FOR CREATE ARGUMENT
-	Students.create({
-		firstName,
-		lastName,
-		email,
-		campusId
-	})
+	Students.create(req.body)
 	.then(createdStudent => res.json(createdStudent));
 });
 
@@ -40,13 +30,7 @@ router.put('/:id', (req, res, next)=>{
 router.delete('/:id', (req, res, next)=>{
 	Students.findById(req.params.id)
 	.then(selectedStudent => selectedStudent.destroy())
-	.then(deletedStudent => res.json(deletedStudent));
+	.then(deletedStudent => res.json(deletedStudent))
 })
-
-
-
-
-
-
 
 module.exports = router;

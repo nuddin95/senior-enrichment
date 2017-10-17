@@ -8,6 +8,6 @@ const db = require('../db')
 api.get('/hello', (req, res) => res.send({hello: 'world'}))
 
 api.use('/students', require('./Routes/students.js'));
-//api.use('/campuses', require('./Routes/campuses.js'));
+api.use('/campuses', require('./Routes/campuses.js'));
 
 module.exports = api
