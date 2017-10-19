@@ -24,13 +24,13 @@ export default class SingleStudent extends Component{
 		return(
 			<div>
 				<div>
-					<h1>Name: {`${student.firstName} ${student.lastName}`}</h1>	
+					<h1>Name: {student && `${student.firstName} ${student.lastName}`}</h1>	
 				</div>
 				<div>
-					<h2>School: {}</h2>
+					<h2>School:<Link to={`/campuses/${student.campus && student.campus.id}`}> {student.campus && student.campus.name}</Link></h2>
 				</div>
 				<div>
-					<h3>E-mail: {student.email}</h3>
+					<h3>E-mail: {student && student.email}</h3>
 				</div>
 				<div>
 					<Link to={`/students/${student.id}/edit`}>

@@ -8,7 +8,6 @@ import Home from './components/Home'
 import Navbar from './components/Navbar'
 import AllStudents from './components/AllStudents'
 import SingleStudent from './components/SingleStudent'
-import AllCampuses from './components/AllCampuses'
 import SingleCampus from './components/SingleCampus'
 
 render (
@@ -21,9 +20,6 @@ render (
 	    	<Route exact path="/students" component={AllStudents} />
 	    	<Route path ="/students/:id" component={SingleStudent} />
 	    	<Route path="/campuses/:id" component={SingleCampus} />
-	    	{/*
-	    	<Route exact path="/campuses" component={AllCampuses} />
-	    	*/}
     	</div>
     </HashRouter>
   </Provider>,

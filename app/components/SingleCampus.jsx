@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { Link, HashRouter, Route } from 'react-router-dom';  
 import axios from 'axios';
+import EditSingleCampus from './EditSingleCampus';
+import CreateNewStudent from './CreateNewStudent';
 
 export default class SingleCampus extends Component{
 
 	constructor(){
 		super();
 		this.state={
+			edit:false,
+			add:false,
 			selectedCampus:{}
 		}
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 	}
 
 	componentDidMount(){
@@ -18,44 +24,57 @@ export default class SingleCampus extends Component{
 		.then(selectedCampus => this.setState({selectedCampus}))
 	}
 
+	handleAdd(event){
+		this.setState({add:(!(this.state.add))});
+	}
+
+	handleEdit(event){
+		this.setState({edit:(!(this.state.edit))});
+	}
+
 	render(){
 		const campus = this.state.selectedCampus;
 		return (
-			<div>
+			<HashRouter>
 				<div>
-					<img src={campus.image} /> 	
-				</div>
+					<div>
+						<img src={campus && campus.image} /> 	
+					</div>
 
-				<div>
-					<h1>{campus.name}</h1>
-				</div>
+					<div>
+						<h1>{campus.name}</h1>
+					</div>
 
-				<div>
-					<Link to={`campuses/${this.state.selectedCampus.id}/edit`}>
-						<button>EDIT CAMPUS</button>
-					</Link>
-					<HashRouter>
-						<Route path
-					</HashRouter>
-				</div>
+					<div>
+						<button onClick={this.handleEdit}>EDIT CAMPUS</button>
+						{this.state.edit ? <EditSingleCampus campus={campus}/>:false}
+					</div>
 
-				<div>
-					<h2>Students</h2>
-				</div>
+					<div>
+						<div>
+							<h2>
+								Students 
+								<button onClick={this.handleAdd}>ADD</button>
+								{this.state.add ? <CreateNewStudent defaultCampus={true} campusId={campus.id}/>:false}
+							</h2>
+						</div>
 
-				<div>
-					{
-						campus.students && campus.students.map(student => {
-							return (
-								<div key={student.id}>
-									<h3><Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></h3>
-								</div>
-								)
-						})
-					}
-				</div>
+					</div>
 
-			</div>
+					<div>
+						{
+							campus.students && campus.students.map(student => {
+								return (
+									<div key={student.id}>
+										<h3><Link to={`/students/${student.id}`}>{student.firstName} {student.lastName}</Link></h3>
+									</div>
+									)
+							})
+						}
+					</div>
+
+				</div>
+			</HashRouter>
 			)
 	}
 }

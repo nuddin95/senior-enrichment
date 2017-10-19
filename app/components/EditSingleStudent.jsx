@@ -8,8 +8,7 @@ export default class EditSingleStudent extends Component{
 		super(props);
 		this.state={
 			selectedStudent:this.props.student,
-			campuses:[]
-
+			campuses:[],
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -26,11 +25,22 @@ export default class EditSingleStudent extends Component{
 		const firstName = event.target.firstName.value || this.state.selectedStudent.firstName;
 		const lastName = event.target.lastName.value || this.state.selectedStudent.lastName;
 		const email = event.target.email.value || this.state.selectedStudent.email;
+		const selectedCampus = event.target.campusId.value || this.state.selectedStudent.campusId;
+		
+		const campusId = (this.state.campuses).map(campus => {
+			let id = campus.id;
+			let campusName = String(campus.name);
+			let obj={};
+			obj[campusName]=id;
+			return obj;
+		});
 
+		const trueId=  
 		axios.put(`/api/students/${this.state.selectedStudent.id}`, {
 			firstName,
 			lastName,
-			email
+			email,
+			campusId:(campusId[selectedCampus])
 		})
 		.then(res => res.data)
 		.then(student => console.log(student));
@@ -52,7 +62,7 @@ export default class EditSingleStudent extends Component{
 					E-mail:<br/>
 					<input type="text" placeholder={student.email} name="email"/><br/><br/>
 
-					<select>
+					<select name="campusId">
 						{
 							campuses.map(campus => {
 								return <option key={campus.id}>{campus.name}</option>	
