@@ -11,7 +11,8 @@ router.get('/:id', (req, res, next)=>{
 	Campuses.findOne({
 		where:{
 			id:campusId
-		}
+		},
+		include:[{all:true}]
 	})
 	.then(result => res.json(result));
 });

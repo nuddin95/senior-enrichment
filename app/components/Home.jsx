@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';  
 import axios from 'axios';
 
 export default class Home extends Component {
@@ -23,7 +24,10 @@ export default class Home extends Component {
 				{
 					campuses.map(campus => {
 						return (
-								<li key={campus.name}>{campus.name}</li>
+							<div key={campus.id}>
+							<img className="campusImage" src={campus.image} />
+							<li key={campus.name} className="campusTitle"><Link to={`/campuses/${campus.id}`} >{campus.name}</Link></li>
+							</div>
 							)
 					})
 				}
