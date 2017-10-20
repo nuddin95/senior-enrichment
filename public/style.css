@@ -2,11 +2,22 @@
 	font-family: 'Quicksand', sans-serif;
 	margin:5px;
 	text-align: center;
-	
+	background-color: #fefefe;
 }
 
 ul {
 	list-style-type: none;
+}
+
+#mainNavigation li{
+	display:inline;
+}
+
+button {
+	border:1px dashed black;
+	background-color: #ccccff;;
+	font-size: 16px;
+	padding:10px;
 }
 
 table {
@@ -15,10 +26,11 @@ table {
 
 #mainNavigation {
 	border: 2px dashed black;
+	background-color: #ccccff;
 }
 
 .master-container {
-	border:2px solid black;
+	border:2px solid #ccccff;;
 
 }
 
