@@ -14,7 +14,7 @@ render (
   <Provider store={store}>
     
     <HashRouter>	
-    	<div>
+    	<div className="master-container">
     		<Navbar />
 	    	<Route exact path="/" component={Home} />
 	    	<Route exact path="/students" component={AllStudents} />

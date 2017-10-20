@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, HashRouter, Route } from 'react-router-dom';  
 import axios from 'axios';
 
 export default class CreateNewStudent extends Component{
@@ -8,7 +7,8 @@ export default class CreateNewStudent extends Component{
 		this.state={
 			campusId:props.campusId,
 			defaultCampus:(props.defaultCampus),
-			campuses:[]
+			campuses:[],
+			students:{}
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,6 +33,7 @@ export default class CreateNewStudent extends Component{
 			email,
 			campusId
 		})
+		.then((student) => axios.get('/api/students/'))
 	}
 
 	render(){

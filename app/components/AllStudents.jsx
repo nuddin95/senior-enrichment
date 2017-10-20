@@ -4,11 +4,11 @@ import axios from 'axios';
 import CreateNewStudent from './CreateNewStudent';
 
 export default class AllStudents extends Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state={
 			add:false,
-			students:[]
+			students:props.students || []
 		}
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
@@ -21,9 +21,9 @@ export default class AllStudents extends Component{
 	}
 
 	handleDelete(event){
-		axios.delete(`/api/students/${event.target.value}`).
-		then(result => result.data)
-		.then(deleted => console.log(deleted));
+		axios.delete(`/api/students/${event.target.value}`)
+		.then(result => result.data)
+		.then(deleted => deleted)
 	}
 
 	handleAdd(event){
