@@ -1,5 +1,24 @@
+* {
+	font-family: 'Quicksand', sans-serif;
+	margin:5px;
+	text-align: center;
+	
+}
+
+ul {
+	list-style-type: none;
+}
+
+table {
+	margin:auto;
+}
+
+#mainNavigation {
+	border: 2px dashed black;
+}
+
 .master-container {
-	margin-left: auto;
-	margin-right: auto;
+	border:2px solid black;
+
 }
 

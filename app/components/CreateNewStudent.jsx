@@ -25,8 +25,7 @@ export default class CreateNewStudent extends Component{
 		const firstName = event.target.firstName.value;
 		const lastName = event.target.lastName.value; 
 		const email = event.target.email.value;
-		const campusId = this.props.campusId;
-
+		const campusId = (event.target.Hello && event.target.Hello.value) || this.state.campusId;
 		axios.post('/api/students', {
 			firstName,
 			lastName,
@@ -53,16 +52,15 @@ export default class CreateNewStudent extends Component{
 					{
 
 							!(this.props.defaultCampus) ? (
-							<select>
+							<select name="Hello">
 								{
 									campuses.map(campus => {
-										return <option key={campus.id}>{campus.name}</option>	
+										return <option key={campus.id} value={campus.id}>{campus.name}</option>	
 									})
 								}
 							</select>) : false
 					}
-					<br/>
-					<br/>
+
 					<input type="submit" value="CREATE"/>
 				</form>
 			</div>

@@ -25,8 +25,9 @@ export default class Home extends Component {
 	}
 
 	handleDeleteCampus(event){
-		campusId = event.target.value;
-		axios.delete(`/api/campuses`)
+		const campusId = event.target.value;
+		axios.delete(`/api/campuses/${campusId}`)
+		.then(deletedCampus => console.log(deletedCampus))
 	}
 
 	render(){
@@ -37,10 +38,10 @@ export default class Home extends Component {
 				{
 					campuses.map(campus => {
 						return (
-							<div key={campus.id}>
+							<div key={campus.id} className="campus">
 							<img className="campusImage" src={campus.image} />
 							<li key={campus.name} className="campusTitle"><Link to={`/campuses/${campus.id}`} >{campus.name}</Link></li>
-							<button onClick={this.handleDeleteCampus} value={campus.id}>Delete</button>
+							<button onClick={this.handleDeleteCampus} value={campus.id}>DELETE</button>
 							</div>
 							)
 					})

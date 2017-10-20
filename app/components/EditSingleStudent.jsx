@@ -35,12 +35,17 @@ export default class EditSingleStudent extends Component{
 			return obj;
 		});
 
-		const trueId=  
+		const trueId = campusId.reduce((prev, curr)=>{
+			let keys = Object.keys(curr);
+			prev[keys[0]] = curr[keys[0]];
+			return prev;
+		}, {})
+
 		axios.put(`/api/students/${this.state.selectedStudent.id}`, {
 			firstName,
 			lastName,
 			email,
-			campusId:(campusId[selectedCampus])
+			campusId:(trueId[selectedCampus])
 		})
 		.then(res => res.data)
 		.then(student => console.log(student));

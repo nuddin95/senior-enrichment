@@ -29,8 +29,11 @@ router.put('/:id', (req, res, next)=>{
 })
 
 router.delete('/:id', (req, res, next)=>{
-	Campuses.findById(req.params.id)
-	.then(selectedCampus => selectedCampus.destroy())
+	Campuses.findOne({where:{id:req.params.id}, include:[{all:true}]})
+	.then(selectedCampus => {
+		Promise.all((selectedCampus.students).map(student => student.destroy()))
+		selectedCampus.destroy()
+	})
 	.then(deletedCampus => res.json(deletedCampus));
 })
 
