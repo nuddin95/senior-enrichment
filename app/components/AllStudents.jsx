@@ -23,7 +23,7 @@ export default class AllStudents extends Component{
 	handleDelete(event){
 		axios.delete(`/api/students/${event.target.value}`)
 		.then(result => result.data)
-		.then(deleted => deleted)
+		.then(deleted => this.setState({}))
 	}
 
 	handleAdd(event){

@@ -11,6 +11,7 @@ ul {
 
 #mainNavigation li{
 	display:inline;
+	color:blue;
 }
 
 button {

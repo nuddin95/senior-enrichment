@@ -19,7 +19,8 @@ router.get('/:id', (req, res, next)=>{
 
 router.post('/', (req, res, next)=>{
 	Students.create(req.body)
-	.then(createdStudent => res.json(createdStudent));
+	.then(createdStudent => res.json(createdStudent))
+	.catch(next);
 });
 
 router.put('/:id', (req, res, next)=>{
@@ -32,6 +33,7 @@ router.delete('/:id', (req, res, next)=>{
 	Students.findById(req.params.id)
 	.then(selectedStudent => selectedStudent.destroy())
 	.then(deletedStudent => res.json(deletedStudent))
+	.catch(next);
 })
 
 module.exports = router;
